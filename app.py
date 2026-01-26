@@ -2,13 +2,16 @@
 from flask import Flask, render_template, url_for
 from urllib.parse import quote
 
-app = Flask(__name__)
 
-@app.template_filter('urlencode')
-def urlencode_filter(s):
-    return quote(s)
+app = Flask(
+    __name__,
+    template_folder="../templates",
+    static_folder="../static"
+)
 
-@app.route('/')
+@app.route("/")
+def home():
+    return render_template("index.html")
 @app.route('/about')
 def about():
     """Landing page - About Me section"""
