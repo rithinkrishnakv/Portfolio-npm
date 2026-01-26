@@ -1,4 +1,4 @@
-# wsgi.py
-from app import app  # import your Flask app instance
+from app import app
 
-application = app  # expose 'application' for Gunicorn
+if __name__ == "__main__":
+    app.run()
