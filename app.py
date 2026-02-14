@@ -168,7 +168,7 @@ def academics():
             'specialization': '',
             'institution': 'Scott Christian College',
             'duration': 'June 2020 - May 2023',
-            'cgpa': '8.7',
+            'cgpa': '8.1',
             'coursework': [
                 'HTML, CSS',
                 'JavaScript',

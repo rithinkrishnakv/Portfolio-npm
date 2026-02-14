@@ -147,6 +147,7 @@ body {
     padding-bottom: 0.5rem;
     /* space for the underline */
     transition: color 0.3s ease;
+
 }
 
 .dark .bg-white {
