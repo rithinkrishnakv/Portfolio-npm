@@ -1,9 +1,10 @@
-from flask import Flask, render_template
+import sys
+import os
 
-app = Flask(__name__, template_folder="templates", static_folder="static")
+# Add parent directory to path to import app
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-@app.route("/")
-def home():
-    return render_template("about.html")
+from app import app
 
-# DO NOT use app.run()
+# Export app for Vercel
+# Vercel will use this as the WSGI application

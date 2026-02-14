@@ -50,3 +50,5 @@ logs/
 *.backup
 *.tmp
 base1.html
+.vercel
+.env*.local

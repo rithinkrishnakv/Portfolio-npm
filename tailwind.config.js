@@ -20,6 +20,18 @@ module.exports = {
           800: '#1e40af',
           900: '#1e3a8a',
         },
+        // Dark mode colors
+        'dark-purple': '#411D2B',
+        'raisin-black': '#211720',
+        'night': '#110E15',
+        'black-bean': '#2A0A11',
+        'chocolate-cosmos': '#430E18',
+        // Light mode colors
+        'misty-plum': '#D6B6C6',
+        'lavender-gray': '#C9C2CC',
+        'pale-lilac': '#E6E1EB',
+        'rose-dust': '#E8C7CE',
+        'soft-wine': '#F0B8C2',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
