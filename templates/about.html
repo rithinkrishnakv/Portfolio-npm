@@ -1,4 +1,3 @@
-<!-- templates/about.html -->
 {% extends 'base.html' %}
 
 {% block title %}
@@ -8,14 +7,11 @@ Rithin Krishna K V
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
 <div class="space-y-0">
-  <!-- Hero Section with Professional Mobile First Design -->
   <section
     class="relative flex items-center justify-center overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8 pt-8 md:pt-16 pb-12 md:pb-20"
     style="z-index: 2; background: transparent;">
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <!-- Mobile: Flex Column (Image First), Desktop: Grid -->
       <div class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <!-- Image Section - First on Mobile, Left on Desktop -->
         <div class="flex flex-col items-center md:items-start space-y-6 w-full order-1">
           <div class="relative group">
             <div
@@ -25,13 +21,12 @@ Rithin Krishna K V
               class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-2xl overflow-hidden bg-pale-lilac dark:bg-raisin-black">
               <div
                 class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-misty-plum to-lavender-gray text-gray-800 dark:text-white font-bold text-5xl sm:text-6xl">
-                AK</div>
-              <img src="{{ url_for('static', filename='images/Abishek.jpeg') }}" alt="Rithin Krishna K V"
+                RK</div>
+              <img src="{{ url_for('static', filename='images/Rithin.jpg') }}" alt="Rithin Krishna K V"
                 class="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
 
-          <!-- Quick Stats Badges - Only on Desktop -->
           <div class="hidden md:grid grid-cols-2 gap-4 w-full max-w-xs">
             <div
               class="bg-white/60 dark:bg-raisin-black border border-lavender-gray dark:border-chocolate-cosmos rounded-xl p-4 hover:border-dark-purple dark:hover:border-misty-plum transition">
@@ -58,16 +53,14 @@ Rithin Krishna K V
           </div>
         </div>
 
-        <!-- Content Section - Second on Mobile, Right on Desktop -->
         <div class="text-center md:text-left space-y-4 sm:space-y-6 w-full order-2">
           <div
             class="inline-block bg-rose-dust dark:bg-chocolate-cosmos border border-dark-purple dark:border-misty-plum rounded-full px-4 py-2 text-xs sm:text-sm text-dark-purple dark:text-misty-plum">
             🎓 MCA Graduate 2025</div>
 
-          <!-- Name - Single Line on Mobile -->
           <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight"><span
-              class="bg-gradient-to-r from-dark-purple via-chocolate-cosmos to-black-bean dark:from-misty-plum dark:via-rose-dust dark:to-soft-wine text-transparent bg-clip-text">Abishek
-              Kumar</span></h1>
+              class="bg-gradient-to-r from-dark-purple via-chocolate-cosmos to-black-bean dark:from-misty-plum dark:via-rose-dust dark:to-soft-wine text-transparent bg-clip-text">Rithin
+              Krishna K V</span></h1>
 
           <p class="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed px-2 md:px-0">
             <span class="text-dark-purple dark:text-misty-plum font-semibold">Cyber Security Enthusiast</span> and <span
@@ -107,10 +100,8 @@ Rithin Krishna K V
     </div>
   </section>
 
-  <!-- Main Content Sections -->
   <div
     class="relative z-20 space-y-8 sm:space-y-12 bg-pale-lilac dark:bg-night px-2 sm:px-0 -mt-8 md:-mt-12 pt-8 md:pt-12">
-    <!-- Quick Stats - Mobile Only (Below Hero) -->
     <section class="md:hidden rounded-2xl p-6 shadow-lg scroll-reveal bg-white/60 dark:bg-night">
       <div class="grid grid-cols-2 gap-4">
         <div
@@ -138,7 +129,6 @@ Rithin Krishna K V
       </div>
     </section>
 
-    <!-- About Me Section -->
     <section class="rounded-2xl p-6 sm:p-8 shadow-lg scroll-reveal bg-white/60 dark:bg-raisin-black">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-6">About Me</h2>
       <ul class="text-gray-600 dark:text-white text-base sm:text-lg leading-relaxed space-y-3 list-disc pl-6">
@@ -155,7 +145,6 @@ Rithin Krishna K V
       </ul>
     </section>
 
-    <!-- Professional Experience Section -->
     <section class="rounded-2xl p-6 sm:p-8 shadow-lg scroll-reveal bg-white/60 dark:bg-raisin-black">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6 sm:mb-8">Professional Experience</h2>
       <div class="space-y-6 sm:space-y-8 ">
@@ -191,7 +180,6 @@ Rithin Krishna K V
       </div>
     </section>
 
-    <!-- Core Competencies Section -->
     <section class="rounded-2xl p-6 sm:p-8 shadow-lg scroll-reveal bg-white/60 dark:bg-raisin-black">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 dark:text-white">Core Competencies</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
