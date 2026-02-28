@@ -9,17 +9,13 @@
     {% block title %}Rithin Krishna K V - Portfolio{% endblock %}
   </title>
 
-  <!-- Compiled Tailwind CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
 
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/A-icon.jpg') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/R-icon.png') }}">
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-52GJ4P6JH7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -28,7 +24,6 @@
     gtag('config', 'G-52GJ4P6JH7');
   </script>
 
-  <!-- Font Awesome -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" defer></script>
 </head>
 
@@ -36,41 +31,39 @@
   class="text-gray-900 dark:text-gray-100 transition-colors duration-300 {% if active_page == 'about' %}about-page{% endif %}"
   style="background: transparent;">
 
-  <!-- Custom Cursor -->
   <div id="cursor-main"></div>
 
-  <!-- Particle Background -->
   <canvas id="particle-canvas"></canvas>
 
-  <!-- Header -->
   <header class="sticky top-2 z-50 px-4">
     <div class="max-w-4xl mx-auto glass-effect shadow-lg rounded-3xl overflow-hidden">
 
       <div class="py-2 px-6 flex justify-between items-center">
         <a href="{{ url_for('about') }}"
-          class="site-title text-lg font-bold hover:text-dark-purple transition-colors">
+          class="site-title text-lg font-bold hover:text-blue-600 transition-colors">
           Rithin Krishna K V
         </a>
 
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex space-x-4 text-xs font-medium">
+        <nav class="hidden md:flex space-x-4 text-xs font-medium items-center">
           <a href="{{ url_for('about') }}" class="nav-link"><i class="fas fa-user mr-1"></i>About</a>
           <a href="{{ url_for('projects') }}" class="nav-link"><i class="fas fa-code mr-1"></i>Projects</a>
           <a href="{{ url_for('academics') }}" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i>Academics</a>
           <a href="{{ url_for('research') }}" class="nav-link"><i class="fas fa-flask mr-1"></i>Research</a>
           <a href="{{ url_for('contact') }}" class="nav-link"><i class="fas fa-envelope mr-1"></i>Contact</a>
+          
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            <i id="theme-toggle-icon" class="fas fa-moon text-sm"></i>
+          </button>
         </nav>
       </div>
     </div>
   </header>
 
-  <!-- Main -->
   <main class="max-w-7xl mx-auto px-4 pt-6 pb-8 relative z-10">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-night text-white py-12 mt-16">
+  <footer class="bg-gray-950 dark:bg-black text-white py-12 mt-16">
     <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
 
       <div>
@@ -105,10 +98,41 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
   <script src="{{ url_for('static', filename='js/projects.js') }}"></script>
   <script src="{{ url_for('static', filename='js/page-transitions.js') }}"></script>
+  
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+    // Check for saved theme in localStorage
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        themeToggleIcon.classList.remove('fa-moon');
+        themeToggleIcon.classList.add('fa-sun');
+    } else {
+        document.documentElement.classList.remove('dark');
+        themeToggleIcon.classList.remove('fa-sun');
+        themeToggleIcon.classList.add('fa-moon');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+        // Toggle dark class
+        document.documentElement.classList.toggle('dark');
+        
+        // Update icon and save preference
+        if (document.documentElement.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon.classList.add('fa-sun');
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeToggleIcon.classList.remove('fa-sun');
+            themeToggleIcon.classList.add('fa-moon');
+        }
+    });
+  </script>
 
   {% block modal %}{% endblock %}
 </body>
