@@ -4,214 +4,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>
-    {% block title %}
-    Rithin Krishna K V - Portfolio
-    {% endblock %}
-  </title>
-  <!--<script src="https://cdn.tailwindcss.com"></script> -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/A-icon.jpg') }}" />
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class'
-    }
-  </script>
-  <!-- Google tag (gtag.js) -->
+  <title>
+    {% block title %}Rithin Krishna K V - Portfolio{% endblock %}
+  </title>
+
+  <!-- Compiled Tailwind CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/A-icon.jpg') }}">
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-52GJ4P6JH7"></script>
   <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag('js', new Date())
-    gtag('config', 'G-52GJ4P6JH7')
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-52GJ4P6JH7');
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" defer></script>
 </head>
 
 <body
   class="text-gray-900 dark:text-gray-100 transition-colors duration-300 {% if active_page == 'about' %}about-page{% endif %}"
   style="background: transparent;">
-  <!-- Custom Cursor (No Trail) -->
+
+  <!-- Custom Cursor -->
   <div id="cursor-main"></div>
 
   <!-- Particle Background -->
   <canvas id="particle-canvas"></canvas>
 
-  <!-- Navigation Header - Floating Style -->
+  <!-- Header -->
   <header class="sticky top-2 z-50 px-4">
-    <div id="header-container"
-      class="max-w-4xl mx-auto glass-effect shadow-lg rounded-3xl transition-all duration-500 overflow-hidden">
-      <!-- Main Navbar -->
-      <div class="py-2 px-6 flex justify-between items-center relative z-10">
-        <div class="flex items-center">
-          <a href="{{ url_for('about') }}"
-            class="site-title text-lg font-bold hover:text-dark-purple dark:hover:text-misty-plum transition-colors">Rithin 
-            Krishna K V</a>
-        </div>
+    <div class="max-w-4xl mx-auto glass-effect shadow-lg rounded-3xl overflow-hidden">
 
-        <!-- Desktop Navigation -->
-        <nav id="navigation-bar" class="hidden md:flex space-x-4">
-          <a href="{{ url_for('about') }}" data-page="about"
-            class="nav-link px-2 py-1 rounded-full text-xs font-medium transition-colors duration-200">
-            <i class="fas fa-user mr-2"></i>About
-          </a>
-          <a href="{{ url_for('projects') }}" data-page="projects"
-            class="nav-link px-2 py-1 rounded-full text-xs font-medium transition-colors duration-200">
-            <i class="fas fa-code mr-2"></i>Projects
-          </a>
-          <a href="{{ url_for('academics') }}" data-page="academics"
-            class="nav-link px-2 py-1 rounded-full text-xs font-medium transition-colors duration-200">
-            <i class="fas fa-graduation-cap mr-2"></i>Academics
-          </a>
-          <a href="{{ url_for('research') }}" data-page="research"
-            class="nav-link px-2 py-1 rounded-full text-xs font-medium transition-colors duration-200">
-            <i class="fas fa-flask mr-2"></i>Research
-          </a>
-          <a href="{{ url_for('contact') }}" data-page="contact"
-            class="nav-link px-2 py-1 rounded-full text-xs font-medium transition-colors duration-200">
-            <i class="fas fa-envelope mr-2"></i>Contact
-          </a>
+      <div class="py-2 px-6 flex justify-between items-center">
+        <a href="{{ url_for('about') }}"
+          class="site-title text-lg font-bold hover:text-dark-purple transition-colors">
+          Rithin Krishna K V
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-4 text-xs font-medium">
+          <a href="{{ url_for('about') }}" class="nav-link"><i class="fas fa-user mr-1"></i>About</a>
+          <a href="{{ url_for('projects') }}" class="nav-link"><i class="fas fa-code mr-1"></i>Projects</a>
+          <a href="{{ url_for('academics') }}" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i>Academics</a>
+          <a href="{{ url_for('research') }}" class="nav-link"><i class="fas fa-flask mr-1"></i>Research</a>
+          <a href="{{ url_for('contact') }}" class="nav-link"><i class="fas fa-envelope mr-1"></i>Contact</a>
         </nav>
-
-        <!-- Social Links & Theme Toggle (Desktop Only) -->
-        <div class="hidden md:flex items-center space-x-2">
-          <a href="https://github.com/rithinkrishnakv" target="_blank"
-            class="text-gray-600 dark:text-gray-300 hover:text-dark-purple dark:hover:text-misty-plum transition-colors duration-200"><i
-              class="fab fa-github text-sm"></i></a>
-          <a href="://www.linkedin.com/in/rithin-krishna-k-v-15593b381/" target="_blank"
-            class="text-gray-600 dark:text-gray-300 hover:text-dark-purple dark:hover:text-misty-plum transition-colors duration-200"><i
-              class="fab fa-linkedin text-sm"></i></a>
-          <a href="https://medium.com/@rithinkrishnakv" target="_blank"
-            class="text-gray-600 dark:text-gray-300 hover:text-dark-purple dark:hover:text-misty-plum transition-colors duration-200"><i
-              class="fab fa-medium text-sm"></i></a>
-          <button id="theme-toggle-desktop"
-            class="theme-toggle-btn text-gray-600 dark:text-gray-300 hover:text-dark-purple dark:hover:text-misty-plum transition-colors duration-200 focus:outline-none ml-2"><i
-              class="fas fa-moon dark:fa-sun text-sm"></i></button>
-        </div>
-
-        <!-- Mobile Controls -->
-        <div class="md:hidden flex items-center space-x-3">
-          <button id="theme-toggle-mobile"
-            class="theme-toggle-btn text-gray-600 dark:text-gray-300 hover:text-dark-purple dark:hover:text-misty-plum transition-colors duration-200 focus:outline-none"><i
-              class="fas fa-moon dark:fa-sun text-sm"></i></button>
-          <button id="mobile-menu-button" class="text-gray-600 dark:text-gray-300 transition-colors focus:outline-none">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation Menu - Unified Style -->
-      <div id="mobile-menu" class="hidden md:hidden pb-6 px-6">
-        <div class="flex flex-col space-y-2 mt-2">
-          <a href="{{ url_for('about') }}" data-page="about"
-            class="mobile-nav-link flex items-center px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300">
-            <i class="fas fa-user w-6 mr-3 text-lg opacity-70"></i>About Me
-          </a>
-          <a href="{{ url_for('projects') }}" data-page="projects"
-            class="mobile-nav-link flex items-center px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300">
-            <i class="fas fa-code w-6 mr-3 text-lg opacity-70"></i>Projects
-          </a>
-          <a href="{{ url_for('academics') }}" data-page="academics"
-            class="mobile-nav-link flex items-center px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300">
-            <i class="fas fa-graduation-cap w-6 mr-3 text-lg opacity-70"></i>Academics
-          </a>
-          <a href="{{ url_for('research') }}" data-page="research"
-            class="mobile-nav-link flex items-center px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300">
-            <i class="fas fa-flask w-6 mr-3 text-lg opacity-70"></i>Research
-          </a>
-          <a href="{{ url_for('contact') }}" data-page="contact"
-            class="mobile-nav-link flex items-center px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300">
-            <i class="fas fa-envelope w-6 mr-3 text-lg opacity-70"></i>Contact
-          </a>
-        </div>
-
-        <!-- Mobile Menu Socials -->
-        <div
-          class="flex items-center justify-center space-x-8 mt-6 pt-6 border-t border-gray-200/50 dark:border-white/10">
-          <a href="https://github.com/rithinkrishnakv" target="_blank"
-            class="text-gray-500 dark:text-gray-400 hover:text-dark-purple dark:hover:text-misty-plum"><i
-              class="fab fa-github text-xl"></i></a>
-          <a href="https://www.linkedin.com/in/rithin-krishna-k-v-15593b381/" target="_blank"
-            class="text-gray-500 dark:text-gray-400 hover:text-dark-purple dark:hover:text-misty-plum"><i
-              class="fab fa-linkedin text-xl"></i></a>
-          <a href="https://medium.com/@rithinkrishnakv" target="_blank"
-            class="text-gray-500 dark:text-gray-400 hover:text-dark-purple dark:hover:text-misty-plum"><i
-              class="fab fa-medium text-xl"></i></a>
-        </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 relative z-10">
-    {% block content %}
-    {% endblock %}
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 pt-6 pb-8 relative z-10">
+    {% block content %}{% endblock %}
   </main>
 
   <!-- Footer -->
-  <footer class="bg-night dark:bg-night text-white py-12 mt-16 transition-colors duration-300 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Rithin Krishna K V</h3>
-          <p class="text-gray-400">Advanced Diploma in Cyber Defence</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul class="space-y-2 text-gray-400">
-            <li>
-              <a href="{{ url_for('about') }}" class="hover:text-white transition-colors">About Me</a>
-            </li>
-            <li>
-              <a href="{{ url_for('projects') }}" class="hover:text-white transition-colors">Projects</a>
-            </li>
-            <li>
-              <a href="{{ url_for('academics') }}" class="hover:text-white transition-colors">Academics</a>
-            </li>
-            <li>
-              <a href="{{ url_for('research') }}" class="hover:text-white transition-colors">Research</a>
-            </li>
-            <li>
-              <a href="{{ url_for('contact') }}" class="hover:text-white transition-colors">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Connect With Me</h3>
-          <div class="flex space-x-4">
-            <a href="https://github.com/rithinkrishnakv" target="_blank"
-              class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
-            <a href="https://www.linkedin.com/in/rithin-krishna-k-v-15593b381/" target="_blank"
-              class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
-            <a href="https://medium.com/@rithinkrishnakv" target="_blank"
-              class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-medium text-xl"></i></a>
-            <a href="rithinkrishnakv@gmail.com" class="text-gray-400 hover:text-white transition-colors"><i
-                class="fas fa-envelope text-xl"></i></a>
-          </div>
+  <footer class="bg-night text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+
+      <div>
+        <h3 class="font-semibold mb-2">Rithin Krishna K V</h3>
+        <p class="text-gray-400">Advanced Diploma in Cyber Defence</p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-2">Quick Links</h3>
+        <ul class="text-gray-400 space-y-1">
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('projects') }}">Projects</a></li>
+          <li><a href="{{ url_for('academics') }}">Academics</a></li>
+          <li><a href="{{ url_for('research') }}">Research</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-2">Connect</h3>
+        <div class="flex space-x-4 text-gray-400 text-xl">
+          <a href="https://github.com/rithinkrishnakv" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/rithin-krishna-k-v-15593b381/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://medium.com/@rithinkrishnakv" target="_blank"><i class="fab fa-medium"></i></a>
+          <a href="mailto:rithinkrishnakv@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2025 Rithin Krishna K V. All rights reserved.</p>
-      </div>
+    </div>
+
+    <div class="text-center text-gray-500 mt-8">
+      © 2025 Rithin Krishna K V. All rights reserved.
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-
-  <!-- Projects Page Functionality -->
   <script src="{{ url_for('static', filename='js/projects.js') }}"></script>
-
-  <!-- Page Transitions Script -->
   <script src="{{ url_for('static', filename='js/page-transitions.js') }}"></script>
 
-  {% block modal %}
-  {% endblock %}
+  {% block modal %}{% endblock %}
 </body>
-
 </html>
