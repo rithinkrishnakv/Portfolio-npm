@@ -20,37 +20,18 @@ module.exports = {
           800: '#1e40af',
           900: '#1e3a8a',
         },
-        // Dark mode colors
+        // Dark mode colors (unchanged)
         'dark-purple': '#411D2B',
         'raisin-black': '#211720',
         'night': '#110E15',
         'black-bean': '#2A0A11',
         'chocolate-cosmos': '#430E18',
-        // ADDED: Light mode background
+        // Light mode background
         'light-baby-blue': '#E0F2FE', 
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         mono: ['Fira Code', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.6s ease-in-out',
-        'slide-up': 'slideUp 0.6s ease-in-out',
-        'slide-down': 'slideDown 0.6s ease-in-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        slideDown: {
-          '0%': { transform: 'translateY(-20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
       },
     },
   },
