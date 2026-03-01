@@ -86,7 +86,10 @@ def academics():
 
 @app.route('/research')
 def research():
-    """Research & Medium Publications"""
+    """Research & Medium Publications - Rithin Krishna K V"""
+    # Empty list for now so the template doesn't crash
+    research_projects = [] 
+    
     publications = [
         {
             'title': 'My Security Journey',
@@ -95,8 +98,14 @@ def research():
             'url': 'https://medium.com/@rithinkrishnakv'
         }
     ]
-    return render_template('research.html', active_page='research', research_projects=[], publications=publications)
-
+    
+    # Passing empty lists for articles to prevent Template errors
+    return render_template('research.html', 
+                           active_page='research', 
+                           research_projects=research_projects, 
+                           publications=publications,
+                           articles=[]) # Added this to prevent 404/500 errors
+    
 @app.route('/contact')
 def contact():
     """Contact Info"""
