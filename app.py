@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, send_from_directory
+import os
 
 app = Flask(
     __name__,
@@ -12,7 +13,7 @@ def home():
 
 @app.route('/about')
 def about():
-    """Landing page - Rithin Krishna K V"""
+    """Landing page - Corrected for ADCD status"""
     experience = [
         {
             'role': 'Cyber Security Trainee (ADCD)',
@@ -27,7 +28,17 @@ def about():
             'description': 'Maintaining a consistent learning streak (90+ days) on TryHackMe, solving rooms related to Web Vulnerabilities, Privilege Escalation, and SOC Analyst paths.'
         }
     ]
+    # Removed incorrect 'MCA' references to match actual 18-year-old profile
     return render_template('about.html', active_page='about', experience=experience)
+
+@app.route('/download-resume')
+def download_resume():
+    """Serves the Resume directly from the static/docs directory"""
+    # Matches the exact filename uploaded to GitHub: RithinKrishnaKV_Resume.pdf
+    return send_from_directory(
+        directory=os.path.join(app.static_folder, 'docs'),
+        path='RithinKrishnaKV_Resume.pdf'
+    )
 
 @app.route('/projects')
 def projects():
@@ -59,13 +70,7 @@ def academics():
             'specialization': 'Cyber Security & Ethical Hacking',
             'institution': 'RedTeam Hacker Academy',
             'duration': 'Aug 2025 - Present',
-            'coursework': [
-                'Linux for Hackers',
-                'Computer Networking',
-                'Ethical Hacking Fundamentals',
-                'Web Application Penetration Testing',
-                'Digital Forensics'
-            ]
+            'coursework': ['Linux for Hackers', 'Computer Networking', 'Ethical Hacking Fundamentals', 'Web Application Penetration Testing', 'Digital Forensics']
         },
         {
             'degree': 'Higher Secondary Education (+2)',
@@ -86,10 +91,7 @@ def academics():
 
 @app.route('/research')
 def research():
-    """Research & Medium Publications - Rithin Krishna K V"""
-    # Empty list for now so the template doesn't crash
-    research_projects = [] 
-    
+    """Research & Medium Publications"""
     publications = [
         {
             'title': 'My Security Journey',
@@ -98,14 +100,8 @@ def research():
             'url': 'https://medium.com/@rithinkrishnakv'
         }
     ]
-    
-    # Passing empty lists for articles to prevent Template errors
-    return render_template('research.html', 
-                           active_page='research', 
-                           research_projects=research_projects, 
-                           publications=publications,
-                           articles=[]) # Added this to prevent 404/500 errors
-    
+    return render_template('research.html', active_page='research', research_projects=[], publications=publications, articles=[])
+
 @app.route('/contact')
 def contact():
     """Contact Info"""
