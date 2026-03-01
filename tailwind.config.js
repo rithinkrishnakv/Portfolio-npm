@@ -26,15 +26,8 @@ module.exports = {
         'night': '#110E15',
         'black-bean': '#2A0A11',
         'chocolate-cosmos': '#430E18',
-        // Light mode colors
-        'misty-plum': '#D6B6C6',
-        'lavender-gray': '#C9C2CC',
-        // UPDATED: Pale lilac is now a light baby blue
-        'pale-lilac': '#CDE6F5', 
-        'rose-dust': '#E8C7CE',
-        'soft-wine': '#F0B8C2',
-        // ADDED: Explicit Baby Blue
-        'baby-blue': '#CDE6F5',
+        // ADDED: Light mode background
+        'light-baby-blue': '#E0F2FE', 
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
