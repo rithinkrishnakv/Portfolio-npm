@@ -1,139 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>
-    {% block title %}Rithin Krishna K V - Portfolio{% endblock %}
-  </title>
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/R-icon.png') }}">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-52GJ4P6JH7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-52GJ4P6JH7');
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'raisin-black': '#232128',
+                        'chocolate-cosmos': '#500808',
+                        'dark-purple': '#360647',
+                        'misty-plum': '#C8A2C8',
+                        'rose-dust': '#9E576B',
+                        'pale-lilac': '#E0BBE4'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scroll-reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
-
-<body
-  class="text-gray-900 dark:text-gray-100 transition-colors duration-300 {% if active_page == 'about' %}about-page{% endif %}"
-  style="background: transparent;">
-
-  <div id="cursor-main"></div>
-
-  <canvas id="particle-canvas"></canvas>
-
-  <header class="sticky top-2 z-50 px-4">
-    <div class="max-w-4xl mx-auto glass-effect shadow-lg rounded-3xl overflow-hidden">
-
-      <div class="py-2 px-6 flex justify-between items-center">
-        <a href="{{ url_for('about') }}"
-          class="site-title text-lg font-bold hover:text-blue-600 transition-colors">
-          Rithin Krishna K V
-        </a>
-
-        <nav class="hidden md:flex space-x-4 text-xs font-medium items-center">
-          <a href="{{ url_for('about') }}" class="nav-link"><i class="fas fa-user mr-1"></i>About</a>
-          <a href="{{ url_for('projects') }}" class="nav-link"><i class="fas fa-code mr-1"></i>Projects</a>
-          <a href="{{ url_for('academics') }}" class="nav-link"><i class="fas fa-graduation-cap mr-1"></i>Academics</a>
-          <a href="{{ url_for('research') }}" class="nav-link"><i class="fas fa-flask mr-1"></i>Research</a>
-          <a href="{{ url_for('contact') }}" class="nav-link"><i class="fas fa-envelope mr-1"></i>Contact</a>
-          
-          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-            <i id="theme-toggle-icon" class="fas fa-moon text-sm"></i>
-          </button>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 pt-6 pb-8 relative z-10">
-    {% block content %}{% endblock %}
-  </main>
-
-  <footer class="bg-gray-950 dark:bg-black text-white py-12 mt-16">
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-
-      <div>
-        <h3 class="font-semibold mb-2">Rithin Krishna K V</h3>
-        <p class="text-gray-400">Advanced Diploma in Cyber Defence</p>
-      </div>
-
-      <div>
-        <h3 class="font-semibold mb-2">Quick Links</h3>
-        <ul class="text-gray-400 space-y-1">
-          <li><a href="{{ url_for('about') }}">About</a></li>
-          <li><a href="{{ url_for('projects') }}">Projects</a></li>
-          <li><a href="{{ url_for('academics') }}">Academics</a></li>
-          <li><a href="{{ url_for('research') }}">Research</a></li>
-          <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-semibold mb-2">Connect</h3>
-        <div class="flex space-x-4 text-gray-400 text-xl">
-          <a href="https://github.com/rithinkrishnakv" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/rithin-krishna-k-v-15593b381/" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://medium.com/@rithinkrishnakv" target="_blank"><i class="fab fa-medium"></i></a>
-          <a href="mailto:rithinkrishnakv@gmail.com"><i class="fas fa-envelope"></i></a>
+<body class="bg-gray-50 dark:bg-raisin-black text-gray-900 dark:text-gray-100 font-sans">
+    
+    <nav class="bg-white dark:bg-raisin-black shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-xl font-bold text-dark-purple dark:text-white">Rithin</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300">
+                        <i id="theme-toggle-icon" class="fas fa-sun"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </nav>
 
-    <div class="text-center text-gray-500 mt-8">
-      © 2025 Rithin Krishna K V. All rights reserved.
-    </div>
-  </footer>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% block content %}{% endblock %}
+    </main>
 
-  <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/projects.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/page-transitions.js') }}"></script>
-  
-  <script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleIcon = document.getElementById('theme-toggle-icon');
-
-    // Check for saved theme in localStorage
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        themeToggleIcon.classList.remove('fa-moon');
-        themeToggleIcon.classList.add('fa-sun');
-    } else {
-        document.documentElement.classList.remove('dark');
-        themeToggleIcon.classList.remove('fa-sun');
-        themeToggleIcon.classList.add('fa-moon');
-    }
-
-    themeToggleBtn.addEventListener('click', function() {
-        // Toggle dark class
-        document.documentElement.classList.toggle('dark');
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
         
-        // Update icon and save preference
-        if (document.documentElement.classList.contains('dark')) {
-            localStorage.setItem('theme', 'dark');
-            themeToggleIcon.classList.remove('fa-moon');
-            themeToggleIcon.classList.add('fa-sun');
-        } else {
-            localStorage.setItem('theme', 'light');
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
             themeToggleIcon.classList.remove('fa-sun');
             themeToggleIcon.classList.add('fa-moon');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon.classList.add('fa-sun');
         }
-    });
-  </script>
 
-  {% block modal %}{% endblock %}
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeToggleIcon.classList.remove('fa-moon');
+                themeToggleIcon.classList.add('fa-sun');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeToggleIcon.classList.remove('fa-sun');
+                themeToggleIcon.classList.add('fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
