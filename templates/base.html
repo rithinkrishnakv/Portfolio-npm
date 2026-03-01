@@ -13,149 +13,115 @@
 
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/R-icon.png') }}">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-52GJ4P6JH7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-52GJ4P6JH7');
-  </script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" defer></script>
+
+  <style>
+    /* ================= CRITICAL FIXES ================= */
+
+    /* Never block mouse events */
+    #particle-canvas,
+    #cursor-main {
+      pointer-events: none !important;
+    }
+
+    /* Particle background */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Custom cursor (visual only) */
+    #cursor-main {
+      position: fixed;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+
+    body {
+      background: radial-gradient(
+        circle at top,
+        #0f172a,
+        #020617
+      );
+      overflow-x: hidden;
+    }
+
+    main, header, footer {
+      position: relative;
+      z-index: 10;
+    }
+  </style>
 </head>
 
-<body class="text-gray-900 dark:text-gray-100 transition-colors duration-300" style="background: transparent;">
+<body class="text-gray-100 transition-colors duration-300">
 
-<div id="cursor-main"></div>
-<canvas id="particle-canvas"></canvas>
+  <!-- Visual layers -->
+  <canvas id="particle-canvas"></canvas>
+  <div id="cursor-main"></div>
 
-<!-- ================= HEADER ================= -->
-<header class="sticky top-2 z-50 px-4">
-  <div class="max-w-4xl mx-auto glass-effect shadow-lg rounded-3xl overflow-hidden">
+  <!-- ================= HEADER ================= -->
+  <header class="sticky top-4 z-50 px-6">
+    <div class="max-w-6xl mx-auto glass-effect rounded-full px-6 py-3 flex justify-between items-center">
 
-    <div class="py-2 px-6 flex justify-between items-center">
-
-      <!-- Logo -->
-      <a href="{{ url_for('about') }}" class="site-title text-lg font-bold">
+      <a href="{{ url_for('about') }}" class="text-lg font-semibold">
         Rithin Krishna K V
       </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex space-x-4 text-xs font-medium items-center">
-        <a href="{{ url_for('about') }}" class="nav-link">About</a>
-        <a href="{{ url_for('projects') }}" class="nav-link">Projects</a>
-        <a href="{{ url_for('academics') }}" class="nav-link">Academics</a>
-        <a href="{{ url_for('research') }}" class="nav-link">Research</a>
-        <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+      <nav class="hidden md:flex gap-6 text-sm items-center">
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('projects') }}">Projects</a>
+        <a href="{{ url_for('academics') }}">Academics</a>
+        <a href="{{ url_for('research') }}">Research</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
 
-        <button id="theme-toggle" class="p-2 rounded-full">
+        <button id="theme-toggle">
           <i id="theme-toggle-icon" class="fas fa-moon"></i>
         </button>
       </nav>
-
-      <!-- Mobile Hamburger -->
-      <button id="mobile-menu-btn" class="md:hidden text-xl">
-        <i class="fas fa-bars"></i>
-      </button>
-
     </div>
+  </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden px-6 pb-4 space-y-3 text-sm">
-      <a href="{{ url_for('about') }}" class="block">About</a>
-      <a href="{{ url_for('projects') }}" class="block">Projects</a>
-      <a href="{{ url_for('academics') }}" class="block">Academics</a>
-      <a href="{{ url_for('research') }}" class="block">Research</a>
-      <a href="{{ url_for('contact') }}" class="block">Contact</a>
+  <!-- ================= MAIN ================= -->
+  <main class="max-w-7xl mx-auto px-6 pt-24 pb-20">
+    {% block content %}{% endblock %}
+  </main>
 
-      <!-- Mobile Theme Toggle -->
-      <button id="mobile-theme-toggle"
-              class="flex items-center gap-2 mt-2">
-        <i id="mobile-theme-icon" class="fas fa-moon"></i>
-        <span>Toggle Theme</span>
-      </button>
-    </div>
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/10 py-10 text-center text-gray-400">
+    © 2025 Rithin Krishna K V
+  </footer>
 
-  </div>
-</header>
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    /* ===== Custom cursor (SAFE) ===== */
+    const cursor = document.getElementById('cursor-main');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
 
-<!-- ================= MAIN ================= -->
-<main class="max-w-7xl mx-auto px-4 pt-6 pb-8 relative z-10">
-  {% block content %}{% endblock %}
-</main>
+    /* ===== Theme toggle ===== */
+    const html = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-toggle-icon');
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-gray-950 dark:bg-black text-white py-12 mt-16">
-  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-
-    <div>
-      <h3 class="font-semibold mb-2">Rithin Krishna K V</h3>
-      <p class="text-gray-400">Advanced Diploma in Cyber Defence</p>
-    </div>
-
-    <div>
-      <h3 class="font-semibold mb-2">Quick Links</h3>
-      <ul class="text-gray-400 space-y-1">
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('projects') }}">Projects</a></li>
-        <li><a href="{{ url_for('academics') }}">Academics</a></li>
-        <li><a href="{{ url_for('research') }}">Research</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h3 class="font-semibold mb-2">Connect</h3>
-      <div class="flex space-x-4 text-xl">
-        <a href="https://github.com/rithinkrishnakv" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/rithin-krishna-k-v-15593b381/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://medium.com/@rithinkrishnakv" target="_blank"><i class="fab fa-medium"></i></a>
-        <a href="mailto:rithinkrishnakv@gmail.com"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="text-center text-gray-500 mt-8">
-    © 2025 Rithin Krishna K V. All rights reserved.
-  </div>
-</footer>
-
-<!-- ================= SCRIPTS ================= -->
-<script>
-  const html = document.documentElement;
-
-  const desktopToggle = document.getElementById('theme-toggle');
-  const desktopIcon = document.getElementById('theme-toggle-icon');
-
-  const mobileToggle = document.getElementById('mobile-theme-toggle');
-  const mobileIcon = document.getElementById('mobile-theme-icon');
-
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      html.classList.add('dark');
-      desktopIcon.className = 'fas fa-sun';
-      mobileIcon.className = 'fas fa-sun';
-    } else {
-      html.classList.remove('dark');
-      desktopIcon.className = 'fas fa-moon';
-      mobileIcon.className = 'fas fa-moon';
+    function setTheme(t) {
+      html.classList.toggle('dark', t === 'dark');
+      icon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      localStorage.setItem('theme', t);
     }
-    localStorage.setItem('theme', theme);
-  }
 
-  applyTheme(localStorage.getItem('theme') || 'light');
+    setTheme(localStorage.getItem('theme') || 'dark');
 
-  desktopToggle.onclick = () =>
-    applyTheme(html.classList.contains('dark') ? 'light' : 'dark');
+    toggle.onclick = () =>
+      setTheme(html.classList.contains('dark') ? 'light' : 'dark');
+  </script>
 
-  mobileToggle.onclick = desktopToggle.onclick;
-
-  // Mobile menu toggle
-  document.getElementById('mobile-menu-btn').onclick = () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-  };
-</script>
-
-{% block modal %}{% endblock %}
 </body>
 </html>
